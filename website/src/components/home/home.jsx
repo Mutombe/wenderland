@@ -56,6 +56,54 @@ const HomePage = () => {
     }
   };
 
+  const reviews = [
+    {
+      name: "John Doe",
+      rating: 5,
+      text: "Absolutely incredible work! My car looks brand new after their expert panel beating.",
+      location: "Downtown"
+    },
+    {
+      name: "Sarah Smith",
+      rating: 5,
+      text: "Professional, quick, and their attention to detail is second to none. Highly recommended!",
+      location: "Suburbia"
+    },
+    {
+      name: "Mike Johnson",
+      rating: 4,
+      text: "Great service and reasonable pricing. Restored my vintage car to its former glory.",
+      location: "Riverside"
+    }
+  ];
+
+  // Animation variants for reviews
+  const reviewVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6,
+        type: "spring",
+        stiffness: 100 
+      }
+    }
+  };
+
+  // Render stars based on rating
+  const renderStars = (rating) => {
+    return Array.from({ length: 5 }, (_, index) => (
+      <Star 
+        key={index} 
+        className={`w-5 h-5 inline-block ${
+          index < rating ? 'text-yellow-500' : 'text-gray-300'
+        }`} 
+      />
+    ));
+  };
+
+
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Hero Section */}
