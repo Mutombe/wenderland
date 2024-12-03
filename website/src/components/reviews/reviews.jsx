@@ -1,12 +1,6 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Star, 
-  ThumbsUp, 
-  ThumbsDown, 
-  Filter, 
-  SortDesc 
-} from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Star, ThumbsUp, ThumbsDown, Filter, SortDesc } from "lucide-react";
 
 const ReviewsPage = () => {
   // Comprehensive reviews data with more details
@@ -21,7 +15,7 @@ const ReviewsPage = () => {
       service: "Classic Car Restoration",
       likes: 24,
       dislikes: 2,
-      verified: true
+      verified: true,
     },
     {
       id: 2,
@@ -33,7 +27,7 @@ const ReviewsPage = () => {
       service: "Collision Repair",
       likes: 18,
       dislikes: 1,
-      verified: true
+      verified: true,
     },
     {
       id: 3,
@@ -45,7 +39,7 @@ const ReviewsPage = () => {
       service: "Minor Dent Repair",
       likes: 12,
       dislikes: 3,
-      verified: false
+      verified: false,
     },
     // Add more reviews...
   ]);
@@ -54,32 +48,33 @@ const ReviewsPage = () => {
   const [filter, setFilter] = useState({
     rating: null,
     service: null,
-    sortBy: 'recent'
+    sortBy: "recent",
   });
 
   // Render star ratings
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, index) => (
-      <Star 
-        key={index} 
+      <Star
+        key={index}
         className={`w-5 h-5 inline-block ${
-          index < rating ? 'text-yellow-500' : 'text-gray-300'
-        }`} 
+          index < rating ? "text-yellow-500" : "text-gray-300"
+        }`}
       />
     ));
   };
 
   // Filter and sort reviews
   const processedReviews = reviews
-    .filter(review => 
-      (filter.rating ? review.rating === filter.rating : true) &&
-      (filter.service ? review.service === filter.service : true)
+    .filter(
+      (review) =>
+        (filter.rating ? review.rating === filter.rating : true) &&
+        (filter.service ? review.service === filter.service : true)
     )
     .sort((a, b) => {
-      switch(filter.sortBy) {
-        case 'likes':
+      switch (filter.sortBy) {
+        case "likes":
           return b.likes - a.likes;
-        case 'rating':
+        case "rating":
           return b.rating - a.rating;
         default:
           return new Date(b.date) - new Date(a.date);
@@ -88,20 +83,24 @@ const ReviewsPage = () => {
 
   // Interaction for helpful votes
   const handleHelpfulVote = (reviewId, type) => {
-    setReviews(reviews.map(review => 
-      review.id === reviewId 
-        ? { ...review, 
-            likes: type === 'like' ? review.likes + 1 : review.likes,
-            dislikes: type === 'dislike' ? review.dislikes + 1 : review.dislikes
-          }
-        : review
-    ));
+    setReviews(
+      reviews.map((review) =>
+        review.id === reviewId
+          ? {
+              ...review,
+              likes: type === "like" ? review.likes + 1 : review.likes,
+              dislikes:
+                type === "dislike" ? review.dislikes + 1 : review.dislikes,
+            }
+          : review
+      )
+    );
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-20 sm:py-40">
       <div className="container mx-auto px-4">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -115,16 +114,18 @@ const ReviewsPage = () => {
           {/* Rating Filter */}
           <div className="flex items-center space-x-2">
             <Filter className="text-blue-600" />
-            <select 
-              value={filter.rating || ''}
-              onChange={(e) => setFilter(prev => ({
-                ...prev, 
-                rating: e.target.value ? parseInt(e.target.value) : null
-              }))}
+            <select
+              value={filter.rating || ""}
+              onChange={(e) =>
+                setFilter((prev) => ({
+                  ...prev,
+                  rating: e.target.value ? parseInt(e.target.value) : null,
+                }))
+              }
               className="rounded-lg border-gray-300 focus:ring-blue-500"
             >
               <option value="">All Ratings</option>
-              {[5, 4, 3, 2, 1].map(rating => (
+              {[5, 4, 3, 2, 1].map((rating) => (
                 <option key={rating} value={rating}>
                   {rating} Stars
                 </option>
@@ -135,16 +136,20 @@ const ReviewsPage = () => {
           {/* Service Filter */}
           <div className="flex items-center space-x-2">
             <SortDesc className="text-blue-600" />
-            <select 
-              value={filter.service || ''}
-              onChange={(e) => setFilter(prev => ({
-                ...prev, 
-                service: e.target.value || null
-              }))}
+            <select
+              value={filter.service || ""}
+              onChange={(e) =>
+                setFilter((prev) => ({
+                  ...prev,
+                  service: e.target.value || null,
+                }))
+              }
               className="rounded-lg border-gray-300 focus:ring-blue-500"
             >
               <option value="">All Services</option>
-              <option value="Classic Car Restoration">Classic Car Restoration</option>
+              <option value="Classic Car Restoration">
+                Classic Car Restoration
+              </option>
               <option value="Collision Repair">Collision Repair</option>
               <option value="Minor Dent Repair">Minor Dent Repair</option>
             </select>
@@ -153,12 +158,14 @@ const ReviewsPage = () => {
           {/* Sorting */}
           <div className="flex items-center space-x-2">
             <SortDesc className="text-blue-600" />
-            <select 
+            <select
               value={filter.sortBy}
-              onChange={(e) => setFilter(prev => ({
-                ...prev, 
-                sortBy: e.target.value
-              }))}
+              onChange={(e) =>
+                setFilter((prev) => ({
+                  ...prev,
+                  sortBy: e.target.value,
+                }))
+              }
               className="rounded-lg border-gray-300 focus:ring-blue-500"
             >
               <option value="recent">Most Recent</option>
@@ -169,7 +176,7 @@ const ReviewsPage = () => {
         </div>
 
         {/* Reviews Grid */}
-        <motion.div 
+        <motion.div
           initial="hidden"
           animate="visible"
           variants={{
@@ -177,9 +184,9 @@ const ReviewsPage = () => {
             visible: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.1
-              }
-            }
+                staggerChildren: 0.1,
+              },
+            },
           }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
@@ -188,15 +195,15 @@ const ReviewsPage = () => {
               key={review.id}
               variants={{
                 hidden: { opacity: 0, y: 50 },
-                visible: { 
-                  opacity: 1, 
+                visible: {
+                  opacity: 1,
                   y: 0,
-                  transition: { 
+                  transition: {
                     duration: 0.6,
                     type: "spring",
-                    stiffness: 100 
-                  }
-                }
+                    stiffness: 100,
+                  },
+                },
               }}
               className="
                 bg-white rounded-xl shadow-lg 
@@ -214,9 +221,9 @@ const ReviewsPage = () => {
 
               {/* Review Header */}
               <div className="flex items-center mb-4">
-                <img 
-                  src={review.avatar} 
-                  alt={review.name} 
+                <img
+                  src={review.avatar}
+                  alt={review.name}
                   className="w-12 h-12 rounded-full mr-4"
                 />
                 <div>
@@ -226,9 +233,7 @@ const ReviewsPage = () => {
               </div>
 
               {/* Review Content */}
-              <p className="text-gray-600 mb-4 italic">
-                "{review.text}"
-              </p>
+              <p className="text-gray-600 mb-4 text-sm">"{review.text}"</p>
 
               {/* Review Metadata */}
               <div className="flex justify-between items-center text-sm text-gray-500">
@@ -238,15 +243,15 @@ const ReviewsPage = () => {
 
               {/* Helpful Votes */}
               <div className="flex justify-center space-x-4 mt-4">
-                <button 
-                  onClick={() => handleHelpfulVote(review.id, 'like')}
+                <button
+                  onClick={() => handleHelpfulVote(review.id, "like")}
                   className="flex items-center space-x-2 text-green-600 hover:text-green-800"
                 >
                   <ThumbsUp className="w-5 h-5" />
                   <span>{review.likes}</span>
                 </button>
-                <button 
-                  onClick={() => handleHelpfulVote(review.id, 'dislike')}
+                <button
+                  onClick={() => handleHelpfulVote(review.id, "dislike")}
                   className="flex items-center space-x-2 text-red-600 hover:text-red-800"
                 >
                   <ThumbsDown className="w-5 h-5" />
@@ -265,13 +270,13 @@ const ReviewsPage = () => {
         )}
 
         {/* Write a Review CTA */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
           className="text-center mt-12"
         >
-          <button 
+          <button
             className="
               bg-blue-600 text-white 
               px-8 py-3 rounded-full 
