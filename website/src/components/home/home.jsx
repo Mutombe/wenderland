@@ -71,7 +71,7 @@ const HomePage = () => {
       location: "Chitungwiza"
     },
     {
-      name: "Mike Johnson",
+      name: "Sarah Smith",
       rating: 4,
       text: "Great service and reasonable pricing. Restored my vintage car to its former glory.",
       location: "Braside"
@@ -132,7 +132,7 @@ const HomePage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="text-4xl md:text-5xl font-bold mb-4"
             >
-              Wonderland Panel Beating
+              Wonderland Panel Beaters
             </motion.h1>
             <motion.p
               initial={{ x: 50, opacity: 0 }}
@@ -140,7 +140,7 @@ const HomePage = () => {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="text-lg md:text-xl mb-8"
             >
-              Restoring Vehicles to Perfection, One Panel at a Time
+              The quality you can bank on
             </motion.p>
           </motion.div>
           <Link to="/contact">
@@ -344,8 +344,10 @@ const HomePage = () => {
                     {renderStars(review.rating)}
                   </div>
                 </div>
-                <p className="text-gray-700 italic">
-                  "{review.text}"
+                <p className="text-gray-700 ">
+                  <small>
+                    "{review.text}"
+                  </small>
                 </p>
               </motion.div>
             ))}

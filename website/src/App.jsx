@@ -24,6 +24,7 @@ import ServicesPage from "./components/services/services";
 import { ProcessPage } from "./components/services/services";
 import GalleryPage from "./components/gallery/gallery";
 import ContactPage from "./components/contact/contact";
+import ReviewsPage from "./components/reviews/reviews";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -232,6 +233,7 @@ function PanelBeatingApp() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/process" element={<ProcessPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/reviews" element={<ReviewsPage />} />
             </Routes>
           </PageTransition>
         </div>

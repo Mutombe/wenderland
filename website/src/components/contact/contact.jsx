@@ -138,7 +138,7 @@ const ContactPage = () => {
               <div>
                 <p className="font-medium text-gray-700">Our Workshop</p>
                 <p className="text-sm text-gray-600">
-                  123 Panel Street, Auto City, State 12345
+                  Granite Side, Harare, Zimbabwe
                 </p>
               </div>
             </div>
@@ -155,7 +155,7 @@ const ContactPage = () => {
               <Mail className="mr-4 text-blue-600 flex-shrink-0" size={24} />
               <div>
                 <p className="font-medium text-gray-700">Email</p>
-                <p className="text-sm text-gray-600">info@perfectpanels.com</p>
+                <p className="text-sm text-gray-600">info@wonderland.com</p>
               </div>
             </div>
             
