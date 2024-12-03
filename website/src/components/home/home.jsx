@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   Car, 
+  Star,
   Wrench, 
   Shield, 
   Camera, 
@@ -58,22 +59,22 @@ const HomePage = () => {
 
   const reviews = [
     {
-      name: "John Doe",
+      name: "Simbarashe Mutombe",
       rating: 5,
       text: "Absolutely incredible work! My car looks brand new after their expert panel beating.",
       location: "Downtown"
     },
     {
-      name: "Sarah Smith",
+      name: "Tanyaradzwa Matarutse",
       rating: 5,
       text: "Professional, quick, and their attention to detail is second to none. Highly recommended!",
-      location: "Suburbia"
+      location: "Chitungwiza"
     },
     {
       name: "Mike Johnson",
       rating: 4,
       text: "Great service and reasonable pricing. Restored my vintage car to its former glory.",
-      location: "Riverside"
+      location: "Braside"
     }
   ];
 
@@ -294,6 +295,81 @@ const HomePage = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            What Our Clients Say
+          </motion.h2>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.3
+                }
+              }
+            }}
+            className="grid md:grid-cols-3 gap-8"
+          >
+            {reviews.map((review, index) => (
+              <motion.div
+                key={index}
+                variants={reviewVariants}
+                className="
+                  bg-gray-50 rounded-lg p-6 
+                  shadow-md hover:shadow-xl 
+                  transition-all duration-300
+                  transform hover:-translate-y-2
+                "
+              >
+                <div className="flex justify-between items-center mb-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">{review.name}</h3>
+                    <p className="text-gray-500 text-sm">{review.location}</p>
+                  </div>
+                  <div>
+                    {renderStars(review.rating)}
+                  </div>
+                </div>
+                <p className="text-gray-700 italic">
+                  "{review.text}"
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Link 
+              to="/reviews" 
+              className="
+                bg-blue-600 text-white 
+                px-6 py-3 rounded-full 
+                hover:bg-blue-700 
+                transition-colors
+              "
+            >
+              View All Reviews
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>
