@@ -140,7 +140,7 @@ const HomePage = () => {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="text-lg md:text-xl mb-8"
             >
-              The quality you can bank on
+              Quality you can bank on
             </motion.p>
           </motion.div>
           <Link to="/contact">
