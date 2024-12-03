@@ -132,7 +132,7 @@ const HomePage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="text-4xl md:text-5xl font-bold mb-4"
             >
-              Wonderland Panel Beaters
+              Wonderland Panelbeaters
             </motion.h1>
             <motion.p
               initial={{ x: 50, opacity: 0 }}
