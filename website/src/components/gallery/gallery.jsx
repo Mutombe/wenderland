@@ -107,7 +107,7 @@ const GalleryPage = () => {
   );
 
   return (
-    <div className="container mx-auto py-16 sm:py-24 px-4">
+    <div className="container mx-auto py-16 sm:py-24 px-4 m-10">
       <h1 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 flex justify-center items-center">
         <Camera className="inline mr-4 text-blue-600" size={40} /> 
         Before & After Gallery

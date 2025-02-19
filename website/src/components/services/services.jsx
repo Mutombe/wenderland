@@ -131,7 +131,7 @@ const ServicesPage = () => {
   ];
 
   return (
-    <div className="container mx-auto py-16 px-4 sm:py-24">
+    <div className="container mx-auto py-16 px-4 sm:py-24 m-10">
       <h1 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800">
         Our Specialized Automotive Solutions
       </h1>

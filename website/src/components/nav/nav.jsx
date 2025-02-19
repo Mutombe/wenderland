@@ -3,13 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { Car, Menu, X } from 'lucide-react';
 
 export const Navigation = () => {
-  // State to manage mobile menu open/closed
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  // Get current location to determine active tab
   const location = useLocation();
 
-  // Navigation menu items with paths
   const menuItems = [
     { path: '/', label: 'Home' },
     { path: '/services', label: 'Services' },
@@ -20,57 +16,54 @@ export const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-blue-600 text-white fixed w-full z-50 shadow-lg">
+    <nav className="bg-gradient-to-r from-blue-800 to-blue-600 text-white fixed w-full z-50 shadow-xl">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo Section */}
         <Link 
           to="/" 
-          className="text-2xl font-bold flex items-center hover:text-blue-200 transition-colors"
+          className="text-2xl font-bold flex items-center hover:text-blue-200 transition-all duration-300"
         >
-          <Car className="mr-2 w-8 h-8" /> 
-          Wonderland
+          <Car className="mr-2 w-8 h-8 text-blue-300" />
+          <span className="bg-gradient-to-r from-blue-300 to-white bg-clip-text text-transparent">
+            Wonderland
+          </span>
         </Link>
 
-        {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden focus:outline-none"
+          className="md:hidden focus:outline-none p-2 rounded-lg hover:bg-blue-700 transition-colors"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
         >
           {isMenuOpen ? (
-            <X className="w-6 h-6 text-white" />
+            <X className="w-7 h-7 text-white" />
           ) : (
-            <Menu className="w-6 h-6 text-white" />
+            <Menu className="w-7 h-7 text-white" />
           )}
         </button>
 
-        {/* Navigation Menu */}
         <div className={`
-          fixed inset-0 bg-blue-600 transform transition-transform duration-300 ease-in-out
+          fixed inset-0 bg-gradient-to-b from-blue-800 to-blue-600 transform transition-transform duration-300 ease-in-out
           ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
           md:static md:translate-x-0 md:bg-transparent
           md:flex md:items-center md:space-x-4
         `}>
-          {/* Close Button for Mobile */}
           <button 
-            className="md:hidden absolute top-4 right-4 focus:outline-none"
+            className="md:hidden absolute top-6 right-6 focus:outline-none p-2 rounded-full hover:bg-blue-700"
             onClick={() => setIsMenuOpen(false)}
           >
-            <X className="w-6 h-6 text-white" />
+            <X className="w-7 h-7 text-white" />
           </button>
 
-          {/* Navigation Links */}
-          <div className="flex flex-col md:flex-row items-center justify-center h-full space-y-6 md:space-y-0 md:space-x-4 text-center">
+          <div className="flex flex-col md:flex-row items-center justify-center h-full space-y-8 md:space-y-0 md:space-x-6 text-center pt-20 md:pt-0">
             {menuItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 className={`
-                  block px-4 py-3 text-xl md:text-base
+                  block px-6 py-3 text-xl md:text-lg
                   transition-all duration-300 ease-in-out
                   ${location.pathname === item.path 
-                    ? 'bg-blue-700 md:bg-transparent md:border-2 border-white text-white rounded-lg' 
-                    : 'hover:bg-blue-500 text-blue-100 hover:text-white rounded-lg'}
+                    ? 'bg-blue-700 md:bg-transparent md:border-b-2 border-blue-300 text-white rounded-xl' 
+                    : 'hover:bg-blue-700/50 text-blue-100 hover:text-white rounded-xl'}
                 `}
                 onClick={() => setIsMenuOpen(false)}
               >

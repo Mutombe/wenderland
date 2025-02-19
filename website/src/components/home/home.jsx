@@ -2,14 +2,170 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-  Car, 
-  Star,
   Wrench, 
   Shield, 
-  Camera, 
-  ClipboardList, 
-  PhoneCall 
+  Car,
+  ArrowRight,
+  Clock,
+  Check,
+  Cog,
+  Star
 } from 'lucide-react';
+
+
+const ServiceCards = () => {
+  const services = [
+    {
+      icon: Wrench,
+      title: 'Expert Repairs',
+      description: 'State-of-the-art panel beating with precision engineering and advanced techniques.',
+      benefits: ['Certified technicians', 'Latest equipment', 'Lifetime warranty'],
+      gradient: 'from-blue-600/95 to-blue-400/95',
+      link: '/services',
+      backgroundImage: '/pb1.png',
+      overlayColor: 'from-blue-900/90 to-blue-800/90'
+    },
+    {
+      icon: Shield,
+      title: 'Quality Assurance',
+      description: 'Comprehensive quality control process ensuring superior workmanship on every repair.',
+      benefits: ['Multi-point inspection', '100% satisfaction guarantee', 'Industry certification'],
+      gradient: 'from-blue-500/95 to-blue-300/95',
+      link: '/process',
+      backgroundImage: '/w1.jpg',
+      overlayColor: 'from-blue-800/90 to-blue-700/90'
+    },
+    {
+      icon: Car,
+      title: 'Complete Restoration',
+      description: 'Full-service automotive restoration from minor repairs to major collision work.',
+      benefits: ['Color matching expertise', 'Original parts', 'Detailed documentation'],
+      gradient: 'from-blue-700/95 to-blue-500/95',
+      link: '/services',
+      backgroundImage: '/w2.jpg',
+      overlayColor: 'from-blue-900/90 to-blue-800/90'
+    }
+  ];
+
+  return (
+    <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            Our Expert Services
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            Delivering excellence in automotive repair with cutting-edge technology and certified expertise
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="group"
+            >
+              <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl h-full">
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0 w-full h-full">
+                  <img 
+                    src={service.backgroundImage}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-b ${service.overlayColor} transition-opacity duration-300`} />
+                </div>
+
+                {/* Content Container */}
+                <div className="relative h-full flex flex-col">
+                  {/* Header Section */}
+                  <div className={`p-6 bg-gradient-to-r ${service.gradient} backdrop-blur-sm`}>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 flex items-center justify-center">
+                      <service.icon className="w-12 h-12 text-white" />
+                    </div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="p-6 flex-grow backdrop-blur-sm">
+                    <h3 className="text-2xl font-bold mb-4 text-white">
+                      {service.title}
+                    </h3>
+                    <p className="text-blue-50/90 mb-6 leading-relaxed">
+                      {service.description}
+                    </p>
+
+                    {/* Benefits List */}
+                    <ul className="space-y-3 mb-6">
+                      {service.benefits.map((benefit, idx) => (
+                        <li key={idx} className="flex items-center text-white/90">
+                          <Check className="w-5 h-5 text-blue-300 mr-2 flex-shrink-0" />
+                          <span>{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Footer Section */}
+                  <div className="p-6 border-t border-white/10 backdrop-blur-sm">
+                    <Link 
+                      to={service.link}
+                      className="inline-flex items-center justify-between w-full px-4 py-3 bg-white/10 rounded-xl text-white font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300"
+                    >
+                      <span>Learn More</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Additional Features Bar */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 bg-blue-50 rounded-2xl p-8"
+        >
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="flex items-center space-x-4">
+              <Clock className="w-8 h-8 text-blue-600" />
+              <div>
+                <h4 className="font-semibold text-gray-800">Quick Turnaround</h4>
+                <p className="text-gray-600">Most repairs completed within 48 hours</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Cog className="w-8 h-8 text-blue-600" />
+              <div>
+                <h4 className="font-semibold text-gray-800">Advanced Equipment</h4>
+                <p className="text-gray-600">State-of-the-art diagnostic tools</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Shield className="w-8 h-8 text-blue-600" />
+              <div>
+                <h4 className="font-semibold text-gray-800">Guaranteed Work</h4>
+                <p className="text-gray-600">5-year warranty on all repairs</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
 
 const HomePage = () => {
   // Section configuration for services and features
@@ -106,270 +262,181 @@ const HomePage = () => {
 
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Hero Section */}
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      {/* Enhanced Hero Section */}
       <motion.header
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="bg-cover bg-center h-screen flex items-center"
-        style={{
-          backgroundImage: `url('/pb.png')`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover'
-        }}
+        className="relative h-screen flex items-center overflow-hidden"
       >
-        <div className="container mx-auto text-center text-white px-4">
+        <div className="absolute inset-0">
+          <img 
+            src="/pb.png" 
+            alt="Workshop background" 
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-blue-600/60" />
+        </div>
+        
+        <div className="container mx-auto text-center relative px-4">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.7 }}
-            className="bg-gray-800 bg-opacity-70 p-6 rounded-lg"
+            className="inline-block backdrop-blur-sm bg-white/10 p-8 rounded-2xl shadow-xl"
           >
             <motion.h1
-              initial={{ x: -50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-300 to-white bg-clip-text text-transparent"
             >
               Wonderland Panelbeaters
             </motion.h1>
             <motion.p
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="text-lg md:text-xl mb-8"
+              className="text-xl md:text-2xl text-blue-100 mb-12 font-light"
             >
               Quality you can bank on
             </motion.p>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05, boxShadow: "0 8px 25px -8px rgba(255,255,255,0.3)" }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Get a Free Quote →
+              </motion.button>
+            </Link>
           </motion.div>
-          <Link to="/contact">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="bg-white text-blue-600 px-6 py-3 rounded-full font-bold mt-8"
-            >
-              Get a Free Quote
-            </motion.button>
-          </Link>
         </div>
       </motion.header>
 
-      {/* Services Preview Section */}
+      {/* Enhanced Services Section */}
+      <ServiceCards />
       <motion.section 
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="container mx-auto py-16 px-4"
+        className="container mx-auto py-24 px-4"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
       >
-        <h2 className="text-3xl font-bold text-center mb-12">
-          Our Services
+        <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+          Our Expert Services
         </h2>
-        <motion.div 
-          className="grid md:grid-cols-3 gap-8"
-          variants={containerVariants}
-        >
+        <div className="grid md:grid-cols-3 gap-12">
           {serviceSections.map((service, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
               className="
-                bg-white shadow-lg rounded-lg p-6 
-                text-center transform transition-all 
-                hover:scale-105 hover:shadow-xl
+                bg-white rounded-2xl p-8 
+                shadow-2xl hover:shadow-3xl
+                transform transition-all duration-300 
+                hover:-translate-y-2 border-b-4 border-blue-600
               "
             >
-              <div className="flex justify-center mb-4">
-                <service.icon 
-                  className="w-12 h-12 text-blue-600" 
-                />
+              <div className="flex justify-center mb-6">
+                <div className="p-4 bg-blue-100 rounded-full">
+                  <service.icon className="w-12 h-12 text-blue-600" />
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">
+              <h3 className="text-2xl font-bold mb-4 text-gray-800">
                 {service.title}
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-6 leading-relaxed">
                 {service.description}
               </p>
               <Link 
                 to={service.link} 
                 className="
-                  text-blue-600 hover:text-blue-800 
-                  font-medium inline-flex items-center
+                  inline-flex items-center text-blue-600 hover:text-blue-800 
+                  font-semibold group transition-all
                 "
               >
-                Learn More
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className="h-4 w-4 ml-2" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M14 5l7 7m0 0l-7 7m7-7H3" 
-                  />
-                </svg>
+                <span className="mr-2">Explore Service</span>
+                <span className="group-hover:translate-x-2 transition-transform">
+                  →
+                </span>
               </Link>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </motion.section>
 
-      {/* Quick Navigation Section */}
-      <section className="bg-blue-50 py-16">
+      {/* Enhanced Testimonials Section */}
+      <section className="py-24 bg-gradient-to-b from-blue-50 to-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Explore More
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { 
-                icon: Camera, 
-                title: 'Gallery', 
-                description: 'View our completed projects',
-                link: '/gallery'
-              },
-              { 
-                icon: ClipboardList, 
-                title: 'Our Process', 
-                description: 'Understanding our workflow',
-                link: '/process'
-              },
-              { 
-                icon: PhoneCall, 
-                title: 'Contact Us', 
-                description: 'Get in touch with our team',
-                link: '/contact'
-              }
-            ].map((item, index) => (
+          <motion.h2 
+            className="text-4xl font-bold text-center mb-20 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Client Experiences
+          </motion.h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {reviews.map((review, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2, duration: 0.5 }}
                 viewport={{ once: true }}
                 className="
-                  bg-white rounded-lg shadow-md p-6 
-                  text-center hover:shadow-xl 
-                  transform transition-all hover:scale-105
-                "
-              >
-                <div className="flex justify-center mb-4">
-                  <item.icon 
-                    className="w-10 h-10 text-blue-600" 
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  {item.description}
-                </p>
-                <Link 
-                  to={item.link} 
-                  className="
-                    text-blue-600 hover:text-blue-800 
-                    font-medium inline-flex items-center
-                  "
-                >
-                  Discover More
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="h-4 w-4 ml-2" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M14 5l7 7m0 0l-7 7m7-7H3" 
-                    />
-                  </svg>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0, y: -30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-12"
-          >
-            What Our Clients Say
-          </motion.h2>
-          
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.3
-                }
-              }
-            }}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {reviews.map((review, index) => (
-              <motion.div
-                key={index}
-                variants={reviewVariants}
-                className="
-                  bg-gray-50 rounded-lg p-6 
-                  shadow-md hover:shadow-xl 
+                  bg-white rounded-2xl p-8 
+                  shadow-xl hover:shadow-2xl
                   transition-all duration-300
                   transform hover:-translate-y-2
+                  border-t-4 border-blue-600
                 "
               >
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-blue-600 font-bold">
+                      {review.name[0]}
+                    </span>
+                  </div>
                   <div>
                     <h3 className="text-xl font-semibold">{review.name}</h3>
                     <p className="text-gray-500 text-sm">{review.location}</p>
                   </div>
-                  <div>
-                    {renderStars(review.rating)}
-                  </div>
                 </div>
-                <p className="text-gray-700 ">
-                  <small>
-                    "{review.text}"
-                  </small>
+                <div className="mb-4">
+                  {renderStars(review.rating)}
+                </div>
+                <p className="text-gray-700 italic relative pl-6">
+                  <span className="absolute left-0 top-0 text-3xl text-blue-600">“</span>
+                  {review.text}
                 </p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
 
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
+            className="text-center mt-16"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-center mt-12"
           >
             <Link 
               to="/reviews" 
               className="
-                bg-blue-600 text-white 
-                px-6 py-3 rounded-full 
-                hover:bg-blue-700 
-                transition-colors
+                inline-block bg-blue-600 text-white 
+                px-8 py-4 rounded-full font-semibold
+                hover:bg-blue-700 transform transition-all
+                hover:scale-105 shadow-lg hover:shadow-xl
               "
             >
-              View All Reviews
+              Read More Testimonials
             </Link>
           </motion.div>
         </div>
